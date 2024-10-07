@@ -1,0 +1,113 @@
+#numpy
+
+#array vs list
+
+import numpy as np
+import sys
+
+"""lst=[1,3,2,5,4]
+
+array=np.array(lst)
+
+print(type(array))
+print(f'size of array is {array.nbytes}')
+
+print()
+
+print(type(lst))
+print(f'size of list is {sys.getsizeof(lst)}')
+
+#can not pass any operation on this array since it has two data types (str and int)
+a=np.array([123,43,23,'one two three'])
+
+print()
+
+print(a)
+
+
+fa=np.array(array,dtype='f')
+print(fa)"""
+
+"""#2d array
+#create 2 values within a lst
+#both lst inside a lst must have two values if it a 2x2 or 3x3 or ect.
+d2=np.array([[2,3],[4,5]])
+print(d2)
+
+
+#printing demesions of array
+print(d2.ndim)
+
+#print shape of array
+print(d2.shape)
+
+
+#printing len of lst
+
+print(d2.size)
+
+d3=np.arange(0,10)
+
+print(d3)
+
+print(d3.nbytes)
+
+
+#get random arrangement of numbers
+d4=np.random.permutation(d3)
+print(d4)
+
+print(np.random.randint(0,10))
+
+#######################################################
+print()
+#get random numpy array of a specifyied numpy dimension
+
+d5=np.random.rand(2,3)
+print(d5)
+
+print(d5.reshape(3,2))"""
+
+ar=np.arange(1,37)
+print(ar)
+
+print()
+
+print(ar.shape)
+
+print()
+
+print(ar.reshape(6,6))
+
+
+
+ar2=np.arange(20,40)
+
+ar3=np.random.permutation(ar2)
+print(ar3)
+
+
+
+#sorting a array
+
+ar4=np.sort(ar3)
+print(ar4)
+
+
+#making a array of only 0's
+
+ar5=np.zeros(10)
+print(ar5)
+
+
+#making a array of only 1's
+
+ar6=np.ones(10)
+print(ar5)
+
+
+
+print(np.ones((4,2,2),dtype='int32'))
+
+
+print(np.full((2,2),7))
