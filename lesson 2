@@ -1,0 +1,62 @@
+import numpy as np
+
+a=np.array([[1,3,2,4],[5,6,7,6]])
+print(np.full_like(a,4))
+
+
+print(np.random.rand(4,2))
+
+
+#x=np.random.randint((-4,7),size=(4,3))
+
+#print(x)
+
+
+
+#identity matrix
+print(np.identity(4))
+
+array2=np.array([[2,5,4,3]])
+b=np.repeat(array2,3,axis = 0)
+print(b)
+#array sliccing
+array3=np.array([1,2,3,4,5,6,7,8])
+print(array3[:4])
+
+#2d sliccing
+array4=np.array([[1,2,3,4],[5,7,6,8],[9,8,0,89]])
+print(array4.shape)
+print(array4[0:3,0:1])
+
+array5=np.arange(1,50).reshape(7,7)
+print(array5)
+
+l1=[1,2,3,4,5,6,7,8,9,10]
+for i in l1:
+    if i%2==0:
+        print(i)
+
+
+k=np.arange(1,11)
+evenary=k[k%2==0]
+print(evenary)
+
+checkfor5=k[k==5]
+print(checkfor5)
+#searching values for index's
+print(k[[2,4,6]])
+
+print(k+1)
+
+m=np.full_like(k,10)
+
+p=k+m
+print(p)
+
+
+#create equation 
+def sol(k):
+    return 2*k+3
+
+y=sol(k)
+print(y)
