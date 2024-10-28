@@ -1,0 +1,61 @@
+#28/10/2024
+
+#check for missing values
+print(titanic.isnull().sum())
+
+#printing specific rows
+print(titanic[titanic.index==865])
+
+#printing 2 or more rows
+print(titanic[titanic.index.isin(range(2,10))])
+
+#reseting row lable
+titanic.index=range(1,888)
+
+#taken index pos
+print(titanic.iloc[1])
+
+#taken row lable
+print(titanic.loc[1])
+
+#printing two or more specific rows
+print(titanic.loc[[2,50]])
+
+#printing two or more specific rows and columns
+print(titanic.loc[[2,50],['Survived','Pclass']])
+
+#iloc (printing two or more specific rows and columns)
+print(titanic.iloc[100:110,5:])
+
+#changing data
+titanic_new=titanic.loc[titanic['Fare']==7.6500,['Fare']]=8
+print(titanic_new)
+
+#new value is 8
+print(titanic.iloc[100:110,5:])
+
+#the survived  fare and name of all the pclass being greater than 1
+print(titanic.loc[titanic['Pclass']>1,['Survived','Pclass','Name']])
+
+#creating a new columns
+titanic['Double_Fare']=titanic['Fare']*2
+print(titanic.iloc[1:5,6:])
+
+#rename column
+data_renamed=titanic.rename(columns={'Pclass':'Personal_class','Siblings/Spouses Aboard':'S/S/A'})
+print(data_renamed.info())
+
+#grouping data categorically (grouping by data ie. male/female and then the mean of that group Age )
+grouped=titanic.groupby('Sex')['Age'].mean()
+print(grouped)
+
+#groupng by pclass and the mean of the fares of each class
+grouped2=titanic.groupby('Pclass')['Fare'].mean()
+print(grouped2)
+
+#get count of rows in each category
+print(titanic['Pclass'].value_counts())
+
+#sort values
+sorted_titanic=titanic.sort_values(by=['Pclass','Age'],ascending=True)
+print(sorted_titanic)
