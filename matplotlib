@@ -1,0 +1,51 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+#plot axis one
+#x=np.array([1,8])
+
+#plot axis two
+#y=np.array([3,10])
+
+#ploting the axis/joining both dots 
+#plt.plot(x,y)
+
+#plotting w/ dots not connected lines
+#plt.plot(x,y,'o')
+
+#showing plotted lines
+#plt.show()
+
+
+
+
+#plot axis one
+a=np.array([1,2,6,8])
+
+#plot axis two
+b=np.array([3,8,1,10])
+
+#plotting with dots on poind can be ( * o + D p s )
+#plt.plot(a,b,marker='D')
+
+
+#plotting dotted lines with colours r=red g=green b=blue k=black w=white y=yellow m=mangenta c=cyan
+#ms = marker size
+#mec = marker edge colour
+#mfc = marker face colour (changes the fill coulor of the circle)
+#if use 2 minus symbols insted of colon it gives a dashed line and if you use a minus symbol and a dot it give you a mix of one dot then one dash
+#plt.plot(a,b,'o-.b',ms=10,mec='k', mfc='y')
+
+
+
+#this will alos plot with a dashed line i.e dotted  , dashed ,  dashdot
+#this will change color of the line i.e aqua ,  hot pink
+plt.plot(a,b,linestyle='dashed',color='Aqua')
+
+
+
+#showing plotted lines
+plt.show()
+
+
+
