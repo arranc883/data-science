@@ -1,0 +1,19 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+
+
+
+
+coefficients=int(input('what would you like the coefficients to be for linear? '))
+
+#linear
+
+x=np.arange(0,51)
+y=coefficients*x
+
+
+plt.plot(x,y,color='aqua')
+
+
+plt.show()
