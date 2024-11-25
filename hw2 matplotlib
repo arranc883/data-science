@@ -1,0 +1,29 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+titanic=pd.read_csv('C:\\Users\\arran\\OneDrive\\Desktop\\data science\\mat plot lib\\titanic1.csv')
+
+men_women=(titanic['Sex']).value_counts()
+
+class1=titanic['Pclass'].value_counts()
+
+average_Fare=titanic.groupby('Sex')['Fare'].mean()
+
+
+plt.bar(average_Fare.index,average_Fare.values)
+plt.show()
+
+
+
+#bar plot
+plt.barh(men_women.index,men_women.values,color='aqua',height=0.1)
+plt.show()
+
+
+#pie chart
+z=np.array([class1])
+
+plt.pie(class1.values,labels=class1.index,autopct='%1.1f%%',colors=['aqua','red','green'],startangle=90)
+
+plt.show()
