@@ -1,0 +1,49 @@
+import pandas as pd
+import numpy as np
+from sklearn.tree import DecisionTreeClassifier
+from sklearn import metrics
+from sklearn.model_selection import train_test_split
+
+#loding data
+data=pd.read_csv('C:\\Users\\arran\\OneDrive\\Desktop\\data science\\files\\iris.xlsx')
+
+#info
+print(data.info())
+
+#adding columns
+data.columns=['sepal_length', 'sepal_width', 'petal_lenght', 'petal_width', 'species']
+print(data.head())
+
+#categorical to numerical
+data['species']=data['species'].replace({'Iris-setosa':0, 'Iris-versicolor':1, 'Iris-virginica':2})
+
+#check if it has worked
+print(data.head())
+
+
+#drop one column to pick only the independent variables
+X=data.drop('species', axis=1)
+
+#y is what is needed to be predicted
+y=data['species']
+
+
+#Every time the random state chnages different data is allocated to test/train
+X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.2,random_state=1)
+
+#80% is allocated to train
+print(X_train)
+
+
+#predicton
+
+model=DecisionTreeClassifier(max_depth=3, random_state=1)
+
+model.fit(X_train,y_train)
+
+
+#predicting y for the x test
+
+predict=model.predict(X_test)
+
+print(metrics.accuracy_score(predict,y_test))
