@@ -1,0 +1,50 @@
+#covid data set
+
+#imports
+import pandas as pd
+import numpy as np
+#plotly higher graphics 
+import plotly
+import plotly.express as px
+import plotly.graph_objects as pg
+
+data=pd.read_csv('C:\\Users\\arran\\OneDrive\\Desktop\\data science\\files\\covid_data.csv')
+
+#required collumns
+data=data[['Province_State','Country_Region','Confirmed','Recovered','Deaths','Active']]
+
+#basic info
+print(data.info())
+
+#checking how many null values there are
+print(data.isnull().sum())
+
+#filling null valuess
+data['Province_State'].fillna(value='')
+
+#droppng all null values
+data1=data.dropna()
+
+#checking how many null values there are in data1
+print(data1.isnull().sum())
+
+#checking for number of rows
+print(data1.info())
+
+#top ten countries with largest number of confirmed casses
+#nlargest=top (10 %) 
+#sort_values=(descending)
+
+
+#top_confirmed=pd.DataFrame(data1.groupby('Country_Region')['Confirmed'].sum().nlargest(10).sort_values(ascending=False))
+#figure1=px.scatter(top_confirmed, x=top_confirmed.index, y='Confirmed', size='Confirmed',size_max=120, color=top_confirmed.index, title='top ten countries by confirmed casses')
+#figure1.write_html('fig1.html', auto_open=True)
+
+
+
+top_deaths=pd.DataFrame(data1.groupby('Country_Region')['Deaths'].sum().nlargest(10).sort_values(ascending=False))
+#figure2=px.scatter(top_deaths, x=top_deaths.index, y='Deaths', size='Deaths',size_max=120, color=top_deaths.index, title='top ten countries by deaths')
+#figure2.write_html('fig2.html', auto_open=True)
+
+figure3=px.bar(top_deaths, x=top_deaths.index, y='Deaths', height=600, color='Deaths', orientation='v', color_continuous_scale=['blue','red'], title='top ten countries by deaths')
+figure3.write_html('fig3.html', auto_open=True)
