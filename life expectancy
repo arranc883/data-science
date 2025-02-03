@@ -1,0 +1,96 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+data=pd.read_csv('C:\\Users\\arran\\OneDrive\\Desktop\\data science\\files\\LifeExpectancy.csv')
+
+#data shape
+print(data.shape)
+
+#removing spaces from clumn headers
+data.columns=data.columns.str.strip()
+
+#columns with null values
+null=data.isnull().sum()
+
+#all null data
+missing_data=null[null>0]
+
+#prints the type of the data (series of data frame)
+print(type(missing_data))
+
+#dropping all the collumns from data frame containing more than 15% of missing values
+#data=data.loc[:] - selscting all cloumns
+#data.isnull().mean()<=0.15 - removes everything that is more than 15%
+data=data.loc[:,data.isnull().mean()<=0.15]
+
+#checking if it worked
+print(data.shape)
+
+#numerical data
+numerical=data.select_dtypes(include=['number'])
+
+print(numerical.head())
+
+#if null values?
+print(numerical.isnull().sum())
+
+#fill null values with the medium
+data[numerical.columns]=numerical.fillna(numerical.median())
+
+#check if any are null
+print(data.isnull().sum())
+
+#average life expecatcy
+average_life=data.groupby('Year')['Life expectancy'].mean()
+#make sure it works
+print(average_life)
+
+
+#how big the figure is
+plt.figure(figsize=(8,6))
+#ploting it ( no need for plt.plot since it doesnt have a x and y axis )
+average_life.plot(kind='bar',color=['blue','red'],title='Average life expectancy', xlabel='year',ylabel='average life span')
+plt.show()
+
+
+
+#filtering the data from the years 2000 - 2010
+drty=data[(data['Year']>=2000) & (data['Year']<=2010)]
+print(drty.shape)
+
+#when ever we use .grouby it becomes a series instead of a data frame -- average deaths ( 2000- 2010)
+average_lifefiltered=drty.groupby('Year')['Life expectancy'].mean()
+plt.figure(figsize=(8,6))
+
+# .index= x   .values=y  -- ploting average_lifefiltered
+plt.plot(average_lifefiltered.index,average_lifefiltered.values, marker='*', linestyle='-',color='red')
+plt.title('Average life expectancy 2000 - 2015')
+plt.ylabel(ylabel='age')
+plt.xlabel(xlabel='years')
+plt.show()
+
+
+#highest value
+print(average_life.max())
+
+#gives highest value + index
+print(average_life.idxmax())
+
+
+#life expactancy based and year and wheather developed or developed countuires -- . unstack makes it a data frame
+devoloping_life=data.groupby(['Year','Status'])['Life expectancy'].mean().unstack()
+#check if it worked
+print(devoloping_life)
+
+
+#prints type of ....
+print(type(devoloping_life))
+
+
+
+
+
+################################
+#plot devoloping life using bar
+################################
